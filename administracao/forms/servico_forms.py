@@ -1,6 +1,6 @@
 from decimal import Decimal
 from django import forms
-from .models import Servico
+from ..models import Servico
 
 class ServicoForm(forms.ModelForm):
     valor_minimo = forms.CharField(widget=forms.TextInput(attrs={'class': 'money'}));
