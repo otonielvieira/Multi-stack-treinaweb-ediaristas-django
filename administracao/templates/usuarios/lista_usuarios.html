@@ -1,12 +1,7 @@
 {% extends 'base.html' %}
-
-{% block title %}
-    Listagem de usuários
-
-{% endblock title %}
+{% block title %}Listagem de usuários{% endblock title %}
 
 {% block content %}
-
 <div class="card">
     <div class="card-header">
         <h3 class+"card-title">Lista de usuários</h3>
@@ -16,8 +11,7 @@
             <thead>
                 <tr>
                 <th>Username</th>
-                <th>Acões</th>
-               
+                <th>Acões</th>    
                 </tr>
             </thead>
             <tbody>
@@ -30,10 +24,8 @@
                         </td>
                     </tr>
                 {% endfor %}
-
             </tbody>
-
-        </table>
+      </table>
     </div>
 </div>
 
