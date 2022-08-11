@@ -1,6 +1,8 @@
+from sre_constants import SUCCESS
 from django.urls import path
 from .views import servico_views, usuario_views
 from django.contrib.auth import views as auth_views
+from django.urls.base import reverse_lazy
 
 
 urlpatterns = [
@@ -12,6 +14,8 @@ urlpatterns = [
     path('usuarios/editar/<int:id>', usuario_views.editar_usuario, name='editar_usuario'),
     path('autenticacao/login', auth_views.LoginView.as_view(), name="login"),
     path('autenticacao/logout', auth_views.LogoutView.as_view(), name="deslogar_usuario"),
+    path('alterar_senha', auth_views.PasswordChangeView.as_view(
+        success_url=reverse_lazy('listar_servicos')), name="alterar_senha"),
 
   
 ]
