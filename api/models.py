@@ -19,8 +19,6 @@ def nome_arquivo_documento(instance, filename):
     
     return os.join('documentos', filename)
     
-
-
     
 class Usuario(AbstractUser):
     TIPO_USUARIO_CHOICES = (
@@ -37,3 +35,11 @@ class Usuario(AbstractUser):
     chave_pix = models.CharField(null=True, blank=True, max_length=255)
     foto_documento = models.ImageField(null=False, upload_to=nome_arquivo_foto, validators=[validate_image_file_extension,])
     foto_usuario = models.ImageField(null=False, upload_to=nome_arquivo_documento, validators=[validate_image_file_extension,])
+    
+#tabela de relacionamento que salva as cidades e relaciona aos usuarios 
+class CidadesAtendimento(models.Model):
+    codigo_ibge = models.IntegerField(null=False, blank=False)
+    cidade = models.CharField(max_length=100, null=False, blank=False)
+    estado = models.CharField(max_length=2, null=False, blank=False)
+    usuario = models.ManyToManyField(Usuario, related_name='cidades_atendidas')
+     
