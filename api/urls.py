@@ -1,5 +1,10 @@
 from django.urls import path
 
-urlpatterns = [
+from api.views.diaristas_localidade_view import DiasristasLocalidades
 
+urlpatterns = [
+     path('diaristas/localidades', DiasristasLocalidades.as_view(), name='ediaristas-localidades-list'),
 ]
+
+
+
