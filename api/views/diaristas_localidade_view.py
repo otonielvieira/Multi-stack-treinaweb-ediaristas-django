@@ -11,9 +11,7 @@ from ..services import cidades_atendimento_service
 class DiaristasLocalidades(APIView):
     def get(self, request, format=None):
         cep = self.request.query_params.get('cep', None)
-        cidade = cidades_atendimento_service.buscar_cidade_cep(cep)
-        print(cidade)
-        diaristas = Usuario.objects.filter(tipo_usuario=2)
+        diaristas = cidades_atendimento_service.listar_diaristas_cidade(cep)
         serializaer_diaristas_localidade = DiaristasLocalidadesSerializers(diaristas, many=True)
         return Response(serializaer_diaristas_localidade.data, status=status_http.HTTP_200_OK)
     
