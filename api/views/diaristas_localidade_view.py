@@ -1,18 +1,21 @@
+from multiprocessing import context
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from ..models import Usuario
 from ..serializers.diaristas_localidade_serializer import DiaristasLocalidadesSerializers
 from rest_framework import status as status_http
 from ..services import cidades_atendimento_service
+from ..paginations import diaristas_localidade_pagination
 
 
 
 
-class DiaristasLocalidades(APIView):
+class DiaristasLocalidades(APIView, diaristas_localidade_pagination.DiaristasLocalidadePagination):
     def get(self, request, format=None):
         cep = self.request.query_params.get('cep', None)
         diaristas = cidades_atendimento_service.listar_diaristas_cidade(cep)
-        serializaer_diaristas_localidade = DiaristasLocalidadesSerializers(diaristas, many=True)
-        return Response(serializaer_diaristas_localidade.data, status=status_http.HTTP_200_OK)
+        resultado = self.paginate_queryset(diaristas, request)
+        serializaer_diaristas_localidade = DiaristasLocalidadesSerializers(resultado, many=True, context={"request": request})
+        return self.get_paginated_response(serializaer_diaristas_localidade.data)
     
   
