@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from administracao.forms.usuario_forms import CadastroUsuarioForm
 from administracao.forms.usuario_forms import EditarUsuarioForm
 
-@login_required
+#@login_required
 def cadastrar_usuario(request):
     if request.method == "POST":
          form_usuario = CadastroUsuarioForm(request.POST)
