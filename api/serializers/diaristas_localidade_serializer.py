@@ -9,4 +9,4 @@ class DiaristasLocalidadesSerializers(serializers.ModelSerializer):
         fields = ('nome_completo', 'reputacao', 'foto_usuario', 'cidade')
         
     def get_cidade(self, obj):
-        return "Saõ Paulo"
+        return "São Paulo"
